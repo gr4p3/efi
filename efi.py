@@ -22,7 +22,7 @@ c_p = '[+] Cerrando programa...'
 #Complido
 g_e = '[*] Guardado con exito.'
 
-def guardar(tipo,bin,fecha,cvv,comentario,combo):
+def guardar(tipo,bin,fecha,cvv,comentario,combo,cc):
     r = open(tipo+'.txt','a')
     if comentario == None:
         ask_comm = input('Quieres agregar un comentario? (y/n): ')
@@ -51,6 +51,19 @@ def guardar(tipo,bin,fecha,cvv,comentario,combo):
     if combo:
         comb = input('Ingresa el/los combo(s) a continuacion:\n')
         r.write(' '+comb)
+    if cc == None:
+        cce = input('Quieres agregar cc utilizada? (y/n): ')
+        if cce in ('y','Y'):
+           cc = True
+        elif cc in ('n','N'):
+           cc = True
+        else:
+           print(u_e)
+    if cc == str():
+        cc = False
+    if cc:
+        cce = input('Ingresa la CC a continuacion:\n')
+        r.write(' '+cce)
     print('\n'+e_s+' \''+tipo+'.txt\'...'),print(c_p),print(g_e)
     r.write('\n')
     r.close()
@@ -58,10 +71,10 @@ def guardar(tipo,bin,fecha,cvv,comentario,combo):
 def bin(cuenta):
     def cvv_c(cvv):
         if len(cvv) == 4 or (len(cvv) == 3):
-            return guardar(cuenta,bin,date,cvv,None,None)
+            return guardar(cuenta,bin,date,cvv,None,None,None)
         elif len(cvv) != (4 or 3):
             if cvv == 'rnd':
-                return guardar(cuenta,bin,date,cvv,None,None)
+                return guardar(cuenta,bin,date,cvv,None,None,None)
             elif cvv != 'rnd':
                 print(t_1+'cvv'+t_2)
         elif len(cvv) == 0:
